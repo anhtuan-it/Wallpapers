@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Wallpapers</string>
+    <string name="todo_img_home">TODO</string>
+    <string name="todo_img_home_detail">TODO</string>
+    <string name="txt_type_home_detail">TextView</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="todo_img_category_detail">TODO</string>
+    <string name="todo_img_about">TODO</string>
+    <string name="txt_name_about">TextView</string>
+    <string name="txt_about">TextView</string>
+    <string name="txt_info">TextView</string>
+</resources>
