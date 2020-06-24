@@ -4,9 +4,9 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,36 +28,24 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class FragmentCategoryDetail extends AppCompatActivity {
-
-    public void dialog() {
-        // dialog loading
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-
-        // hien thi dialog
-        progressDialog.show();
-
-        // dong dialog sau 3s
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                progressDialog.dismiss();
-            }
-        }, 3000);
-    }
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_category_detail);
 
-        dialog();
-
         // Lay id hinh anh
         final String id = getIntent().getStringExtra("id");
+        // Lay the loai hinh anh
+        final String type = getIntent().getStringExtra("type");
+
+        //set tieu de toolbar
+        toolbar = (Toolbar) findViewById(R.id.appBar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Category: " + type);
+
+        dialog();
 
         // Khoi tao recyclerview
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rcv_category_detail);
@@ -102,4 +90,24 @@ public class FragmentCategoryDetail extends AppCompatActivity {
             }
         });
     }
+    public void dialog() {
+        // dialog loading
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+
+        // hien thi dialog
+        progressDialog.show();
+
+        // dong dialog sau 3s
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressDialog.dismiss();
+            }
+        }, 3000);
+    }
+
 }

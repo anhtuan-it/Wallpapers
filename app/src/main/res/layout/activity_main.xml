@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity" >
+    <include
+        layout="@layout/app_bar">
+    </include>
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"

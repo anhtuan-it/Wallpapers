@@ -46,6 +46,7 @@ public class TypeImageAdapter extends RecyclerView.Adapter<TypeImageAdapter.View
             public void onClick(View v) {
                 Intent intentCategory = new Intent(contextM, FragmentCategoryDetail.class);
                 intentCategory.putExtra("id", typeImageModel.id);
+                intentCategory.putExtra("type", typeImageModel.type);
                 contextM.startActivity(intentCategory);
             }
         });

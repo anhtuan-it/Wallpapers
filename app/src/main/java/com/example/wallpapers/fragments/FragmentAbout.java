@@ -27,7 +27,7 @@ public class FragmentAbout extends Fragment {
         TextView txtInfo = (TextView) view.findViewById(R.id.txtInfo);
 
         txtNameApp.setText("Wallpapers");
-        txtInfo.setText("Developed by Lê Anh Tuấn - Built successfully on June 22, 2020 \n https://anhtuan-it.000webhostapp.com");
+        txtInfo.setText("Developed by Lê Anh Tuấn - Built successfully on June 22, 2020 \n https://anhtuan-it.000webhostapp.com \n https://github.com/anhtuan-it");
 
         return view;
     }

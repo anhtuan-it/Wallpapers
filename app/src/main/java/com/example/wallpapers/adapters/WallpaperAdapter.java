@@ -45,6 +45,7 @@ public class WallpaperAdapter extends RecyclerView.Adapter<WallpaperAdapter.View
             public void onClick(View v) {
                 Intent intent = new Intent(context, FragmentHomeDetail.class);
                 intent.putExtra("img_url", wallpaperModel.img_url);
+                intent.putExtra("type", wallpaperModel.type);
                 context.startActivity(intent);
             }
         });

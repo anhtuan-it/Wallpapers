@@ -2,9 +2,11 @@ package com.example.wallpapers.fragments;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.Manifest;
 import android.app.DownloadManager;
+import android.app.ProgressDialog;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -14,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,6 +33,7 @@ public class FragmentHomeDetail extends AppCompatActivity {
     Button buttonSetWallpaper;
     ImageView logo;
     private static final int PERMISSION_STORAGE_CODE = 1000;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,13 @@ public class FragmentHomeDetail extends AppCompatActivity {
 
         // Lay du lieu hinh anh tu fragment home va hien thi len fragment detail
         final String img_url = getIntent().getStringExtra("img_url");
+        // Lay the loai hinh anh
+        final String type = getIntent().getStringExtra("type");
+
+        toolbar = (Toolbar) findViewById(R.id.appBar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Category: " + type);
+
         logo = findViewById(R.id.img_home_detail);
         Picasso.with(this).load(img_url).into(logo);
 
@@ -69,11 +80,12 @@ public class FragmentHomeDetail extends AppCompatActivity {
         buttonSetWallpaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Lay link hinh anh
+                // Lay link hinh anh va tro den target de set hinh nen
                 Picasso.with(getBaseContext()).load(img_url).into(target);
             }
         });
     }
+
     // Ham download hinh anh
     private void startDownload() {
 
@@ -114,15 +126,32 @@ public class FragmentHomeDetail extends AppCompatActivity {
 
     private Target target = new Target() {
         @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
-            try {
-                wallpaperManager.setBitmap(bitmap); // set hinh anh lam wallpaper
-                Toast.makeText(FragmentHomeDetail.this, "Wallpaper was set!", Toast.LENGTH_SHORT).show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
 
+            // dialog loading
+            final ProgressDialog progressDialog = new ProgressDialog(FragmentHomeDetail.this);
+            progressDialog.setMessage("Waiting...");
+            progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
+
+            // hien thi dialog
+            progressDialog.show();
+
+            // dong dialog sau 1s
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialog.dismiss();
+                    WallpaperManager wallpaperManager = WallpaperManager.getInstance(getApplicationContext());
+                    try {
+                        wallpaperManager.setBitmap(bitmap); // set hinh anh lam wallpaper
+                        Toast.makeText(FragmentHomeDetail.this, "Wallpaper was set!", Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, 1000);
         }
 
         @Override

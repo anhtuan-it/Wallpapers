@@ -5,6 +5,9 @@
     android:orientation="vertical"
     android:background="@color/colorBackgroundFragment"
     android:padding="5dp">
+    <include
+        layout="@layout/app_bar">
+    </include>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_category_detail"
