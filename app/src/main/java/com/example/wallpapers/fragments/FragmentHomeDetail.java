@@ -80,7 +80,7 @@ public class FragmentHomeDetail extends AppCompatActivity {
         buttonSetWallpaper.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Lay link hinh anh va tro den target de set hinh nen
+                // Lay link hinh anh va tro den doi tuong set hinh nen
                 Picasso.with(getBaseContext()).load(img_url).into(target);
             }
         });
