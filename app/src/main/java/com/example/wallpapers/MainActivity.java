@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+
 import com.example.wallpapers.fragments.FragmentAbout;
 import com.example.wallpapers.fragments.FragmentCategory;
 import com.example.wallpapers.fragments.FragmentHome;

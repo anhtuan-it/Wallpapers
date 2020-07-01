@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup"
+        tools:targetApi="n">
         <activity android:name=".fragments.FragmentHomeDetail" />
         <activity android:name=".fragments.FragmentCategoryDetail" />
         <activity android:name=".MainActivity">

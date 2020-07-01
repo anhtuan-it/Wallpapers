@@ -63,7 +63,7 @@ public class FragmentCategoryDetail extends AppCompatActivity {
 
         // Tao request len server
         Request request = new Request.Builder()
-                .url("https://anhtuan-it.000webhostapp.com/api/types/" + id)
+                .url("https://anhtuan-it.000webhostapp.com/api/types/" + id + "/")
                 .build();
 
         // Thuc thi request
